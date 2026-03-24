@@ -23,55 +23,71 @@ let gameState = {
 
 // Улучшения
 const UPGRADES = [
+    // Тап
     { id: 1, name: 'Мощный Коготь', icon: '🐱', category: 'tap', baseCost: 100, effect: 1, maxLevel: 50 },
     { id: 2, name: 'Стальные Когти', icon: '🐾', category: 'tap', baseCost: 500, effect: 2, maxLevel: 40 },
     { id: 3, name: 'Алмазные Когти', icon: '💎', category: 'tap', baseCost: 2000, effect: 5, maxLevel: 30 },
-    { id: 4, name: 'Энергетический Бак', icon: '⚡', category: 'energy', baseCost: 200, effect: 10, maxLevel: 30 },
-    { id: 5, name: 'Котячий Кофеин', icon: '☕', category: 'energy', baseCost: 500, effect: 1, maxLevel: 20 },
-    { id: 6, name: 'Сонный Доход', icon: '😴', category: 'passive', baseCost: 300, effect: 10, maxLevel: 50 },
-    { id: 7, name: 'Котячий Бизнес', icon: '💼', category: 'passive', baseCost: 1500, effect: 50, maxLevel: 40 },
-    { id: 8, name: 'Магнит для Монет', icon: '🧲', category: 'special', baseCost: 2000, effect: 5, maxLevel: 20 },
+    { id: 4, name: 'Платиновые Когти', icon: '✨', category: 'tap', baseCost: 10000, effect: 10, maxLevel: 25 },
+    { id: 5, name: 'Космические Когти', icon: '🌟', category: 'tap', baseCost: 50000, effect: 25, maxLevel: 20 },
+    
+    // Энергия
+    { id: 6, name: 'Энергетический Бак', icon: '⚡', category: 'energy', baseCost: 200, effect: 10, maxLevel: 30 },
+    { id: 7, name: 'Котячий Кофеин', icon: '☕', category: 'energy', baseCost: 500, effect: 1, maxLevel: 20 },
+    { id: 8, name: 'Ядерный Реактор', icon: '☢️', category: 'energy', baseCost: 5000, effect: 50, maxLevel: 15 },
+    { id: 9, name: 'Антигравитационный Генератор', icon: '🌀', category: 'energy', baseCost: 25000, effect: 100, maxLevel: 10 },
+    
+    // Пассивный доход
+    { id: 10, name: 'Сонный Доход', icon: '😴', category: 'passive', baseCost: 300, effect: 10, maxLevel: 50 },
+    { id: 11, name: 'Котячий Бизнес', icon: '💼', category: 'passive', baseCost: 1500, effect: 50, maxLevel: 40 },
+    { id: 12, name: 'Котячий Банк', icon: '🏦', category: 'passive', baseCost: 10000, effect: 200, maxLevel: 30 },
+    { id: 13, name: 'Котячий Хедж-Фонд', icon: '📈', category: 'passive', baseCost: 50000, effect: 1000, maxLevel: 20 },
+    
+    // Особые
+    { id: 14, name: 'Магнит для Монет', icon: '🧲', category: 'special', baseCost: 2000, effect: 5, maxLevel: 20 },
+    { id: 15, name: 'Удачливая Лапка', icon: '🍀', category: 'special', baseCost: 5000, effect: 10, maxLevel: 15 },
+    { id: 16, name: 'Комбо Мастер', icon: '🔥', category: 'special', baseCost: 15000, effect: 20, maxLevel: 10 },
+    { id: 17, name: 'Имперский Скипетр', icon: '👑', category: 'special', baseCost: 100000, effect: 50, maxLevel: 5 },
 ];
 
-// Сюжетные главы
+// Сюжетные главы с изображениями
 const STORY_CHAPTERS = [
     {
         chapter: 1,
         title: '🐱 Пробуждение',
-        scene: '┌─────────────────────────────────┐\n│ 🌅 Рассвет в кошачьем мире │\n├─────────────────────────────────┤\n│ │\n│ 😺 ← Ты │\n│ /\\ │\n│ / \\ │\n│ 🐱 Мяу! │\n│ │\n└─────────────────────────────────┘',
-        text: 'Ты открываешь глаза и видишь маленького котёнка...\n\n«Мяу!» — говорит он. — «Ты наконец-то проснулся!»',
+        image: 'https://cataas.com/cat/cute/says/Hello',
+        text: 'Ты открываешь глаза и видишь маленького котёнка с большими глазами.\n\n«Мяу!» — говорит он. — «Ты наконец-то проснулся! Я ждал тебя так долго!»\n\nКотёнок обвивает твои ноги своим пушистым хвостом. Ты чувствуешь тепло его шерсти и понимаешь — это начало великого приключения.',
         requiredTaps: 0,
         reward: 100
     },
     {
         chapter: 2,
         title: '🐾 Первые шаги',
-        scene: '┌─────────────────────────────────┐\n│ 🏚️ Заброшенный домик │\n├─────────────────────────────────┤\n│ 🐱 🐱 🐱 │\n│ \\|/ │\n│ 🏠 → 🏡 │\n│ /|\\ │\n│ 💰 💰 💰 │\n└─────────────────────────────────┘',
-        text: 'Котёнок приводит тебя к заброшенному домику.\n\n«Здесь будет наша штаб-квартира!»',
+        image: 'https://cataas.com/cat/says/Mew',
+        text: 'Котёнок приводит тебя к старому заброшенному домику на краю леса.\n\n«Здесь будет наша штаб-квартира!» — восклицает он, расчесывая усы.\n\nТы начинаешь убирать паутину и расставлять мебель. Каждый тап приносит монетки, которые блестят в лучах солнца.',
         requiredTaps: 100,
         reward: 500
     },
     {
         chapter: 3,
         title: '😺 Новые друзья',
-        scene: '┌─────────────────────────────────┐\n│ 🐱🐱🐱🐱🐱🐱🐱 │\n├─────────────────────────────────┤\n│ 🐱 🐱 🐱 │\n│ 🐱 🏠 🐱 │\n│ 🐱 🐱 🐱 │\n│ │\n│ 💰💰💰💰💰💰💰 │\n└─────────────────────────────────┘',
-        text: 'К твоему домику подходят другие котики.\n\n«Мы слышали, что здесь появился добрый повелитель!»',
+        image: 'https://cataas.com/cat/says/Friends',
+        text: 'К твоему домику подходят другие котики — рыжие, полосатые, черные и белые.\n\n«Мы слышали, что здесь появился добрый повелитель!» — говорят они хором.\n\nТеперь у тебя целая стая! Каждый котик приносит что-то особенное: один — рыбу, другой — мышек, третий — просто тепло и уют.',
         requiredTaps: 500,
         reward: 1000
     },
     {
         chapter: 4,
         title: '🏰 Строительство империи',
-        scene: '┌─────────────────────────────────┐\n│ 🏰 ИМПЕРИЯ КОТИКОВ │\n├─────────────────────────────────┤\n│ 🐱👑🐱 │\n│ 🏰🏰🏰 │\n│ 🐱🛏️🐱🍽️🐱 │\n│ 🐱🧸🐱🧶🐱 │\n│ 💎💎💎💎💎 │\n└─────────────────────────────────┘',
-        text: 'Твой домик превращается в замок!\n\n«Ты лучший повелитель!» — мурлычут они.',
+        image: 'https://cataas.com/cat/says/Empire',
+        text: 'Твой домик превращается в великолепный замок с башнями и мостом!\n\nКотики счастливы: у них есть мягкие кроватки, вкусная еда и бесконечные игрушки.\n\n«Ты лучший повелитель!» — мурлычут они в унисон, и их довольное мурлыканье разносится по всему замку.',
         requiredTaps: 2000,
         reward: 5000
     },
     {
         chapter: 5,
         title: '👑 Легенда',
-        scene: '┌─────────────────────────────────┐\n│ 🌍 МИРОВАЯ ИМПЕРИЯ │\n├─────────────────────────────────┤\n│ 🐱👑🐱👑🐱 │\n│ 🏰🌍🏰🌍🏰 │\n│ 🐱🐱🐱🐱🐱🐱🐱 │\n│ 🐱🐱🐱🐱🐱🐱🐱 │\n│ 🎉🎊🎉🎊🎉🎊🎉 │\n└─────────────────────────────────┘',
-        text: 'Твоя слава разнеслась по всему миру!\n\n«Да здравствует император!» 🎉',
+        image: 'https://cataas.com/cat/says/Legend',
+        text: 'Твоя слава разнеслась по всему миру!\n\nКотики со всех уголков планеты приходят к тебе — из Японии, Египта, Америки и даже с Антарктиды.\n\n«Да здравствует император!» — кричат они, поднимая лапки вверх. Ты построил настоящую империю счастья! 🎉',
         requiredTaps: 10000,
         reward: 10000
     }
@@ -280,28 +296,35 @@ function renderStory() {
 
         if (!unlocked) {
             return `
-                <div class="story-chapter">
+                <div class="story-chapter locked">
                     <div class="chapter-locked">
-                        🔒 Глава ${chapter.chapter}: ${chapter.title}
-                        <br><small>Нужно ${chapter.requiredTaps.toLocaleString()} монет</small>
+                        <div class="locked-icon">🔒</div>
+                        <div class="locked-title">Глава ${chapter.chapter}: ${chapter.title}</div>
+                        <div class="locked-requirement">Нужно ${chapter.requiredTaps.toLocaleString()} монет</div>
                     </div>
                 </div>
             `;
         }
 
         return `
-            <div class="story-chapter">
+            <div class="story-chapter ${completed ? 'completed' : ''}">
                 <div class="chapter-header">
+                    <div class="chapter-number">Глава ${chapter.chapter}</div>
                     <div class="chapter-title">${chapter.title}</div>
                 </div>
-                <div class="chapter-scene">${chapter.scene}</div>
+                <div class="chapter-image">
+                    <img src="${chapter.image}" alt="${chapter.title}" loading="lazy">
+                </div>
                 <div class="chapter-text">${chapter.text}</div>
                 ${!completed ? `
-                    <button class="upgrade-btn" onclick="completeChapter(${chapter.chapter}, ${chapter.reward})">
+                    <button class="chapter-btn" onclick="completeChapter(${chapter.chapter}, ${chapter.reward})">
                         📖 Прочитать (+${chapter.reward.toLocaleString()} 💰)
                     </button>
                 ` : `
-                    <div class="chapter-reward">✅ Прочитано</div>
+                    <div class="chapter-completed">
+                        <span class="completed-icon">✅</span>
+                        <span>Прочитано</span>
+                    </div>
                 `}
             </div>
         `;
