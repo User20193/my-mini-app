@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Cat Empire Tap 🐱</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Главный экран -->
+        <div id="main-screen" class="screen active">
+            <div class="header">
+                <div class="user-info">
+                    <span id="user-name">🐱 Котик</span>
+                    <span id="empire-title">Новичок</span>
+                </div>
+                <div class="currency">
+                    <span id="coins">0</span> 💰
+                </div>
+            </div>
+
+            <div class="main-cat" id="main-cat">
+                <div class="cat-face">😺</div>
+                <div class="tap-hint">Тапай!</div>
+            </div>
+
+            <div class="stats-bar">
+                <div class="stat">
+                    <span class="stat-label">⚡ Энергия</span>
+                    <div class="energy-bar">
+                        <div class="energy-fill" id="energy-fill"></div>
+                        <span id="energy-text">100/100</span>
+                    </div>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">📈 За тап</span>
+                    <span id="per-tap">1 💰</span>
+                </div>
+            </div>
+
+            <div class="combo-indicator" id="combo-indicator">
+                🔥 Комбо x<span id="combo-multiplier">1</span>
+            </div>
+
+            <nav class="bottom-nav">
+                <button class="nav-btn active" data-screen="main-screen">
+                    <span>🐱</span>
+                    <span>Тап</span>
+                </button>
+                <button class="nav-btn" data-screen="shop-screen">
+                    <span>🛒</span>
+                    <span>Магазин</span>
+                </button>
+                <button class="nav-btn" data-screen="profile-screen">
+                    <span>📊</span>
+                    <span>Профиль</span>
+                </button>
+                <button class="nav-btn" data-screen="story-screen">
+                    <span>📖</span>
+                    <span>Сюжет</span>
+                </button>
+            </nav>
+        </div>
+
+        <!-- Магазин -->
+        <div id="shop-screen" class="screen">
+            <div class="screen-header">
+                <h2>🛒 Магазин Империи</h2>
+                <div class="coins-display">
+                    <span id="shop-coins">0</span> 💰
+                </div>
+            </div>
+
+            <div class="shop-categories">
+                <button class="category-btn active" data-category="tap">🐱 Тап</button>
+                <button class="category-btn" data-category="energy">⚡ Энергия</button>
+                <button class="category-btn" data-category="passive">😴 Пассив</button>
+                <button class="category-btn" data-category="special">✨ Особые</button>
+            </div>
+
+            <div class="upgrades-list" id="upgrades-list">
+                <!-- Улучшения загружаются динамически -->
+            </div>
+
+            <nav class="bottom-nav">
+                <button class="nav-btn" data-screen="main-screen">
+                    <span>🐱</span>
+                    <span>Тап</span>
+                </button>
+                <button class="nav-btn active" data-screen="shop-screen">
+                    <span>🛒</span>
+                    <span>Магазин</span>
+                </button>
+                <button class="nav-btn" data-screen="profile-screen">
+                    <span>📊</span>
+                    <span>Профиль</span>
+                </button>
+                <button class="nav-btn" data-screen="story-screen">
+                    <span>📖</span>
+                    <span>Сюжет</span>
+                </button>
+            </nav>
+        </div>
+
+        <!-- Профиль -->
+        <div id="profile-screen" class="screen">
+            <div class="screen-header">
+                <h2>📊 Твой профиль</h2>
+            </div>
+
+            <div class="profile-card">
+                <div class="profile-avatar">😺</div>
+                <div class="profile-name" id="profile-name">Котик</div>
+                <div class="profile-title" id="profile-title">Новичок</div>
+            </div>
+
+            <div class="profile-stats">
+                <div class="profile-stat">
+                    <span class="stat-icon">💰</span>
+                    <span class="stat-value" id="profile-coins">0</span>
+                    <span class="stat-label">Монеты</span>
+                </div>
+                <div class="profile-stat">
+                    <span class="stat-icon">📈</span>
+                    <span class="stat-value" id="profile-total">0</span>
+                    <span class="stat-label">Всего заработано</span>
+                </div>
+                <div class="profile-stat">
+                    <span class="stat-icon">⚡</span>
+                    <span class="stat-value" id="profile-energy">100</span>
+                    <span class="stat-label">Макс. энергия</span>
+                </div>
+                <div class="profile-stat">
+                    <span class="stat-icon">😴</span>
+                    <span class="stat-value" id="profile-passive">0</span>
+                    <span class="stat-label">Пассивный доход/час</span>
+                </div>
+            </div>
+
+            <div class="daily-reward" id="daily-reward">
+                <button class="reward-btn" id="claim-reward">
+                    📅 Забрать ежедневную награду
+                </button>
+            </div>
+
+            <nav class="bottom-nav">
+                <button class="nav-btn" data-screen="main-screen">
+                    <span>🐱</span>
+                    <span>Тап</span>
+                </button>
+                <button class="nav-btn" data-screen="shop-screen">
+                    <span>🛒</span>
+                    <span>Магазин</span>
+                </button>
+                <button class="nav-btn active" data-screen="profile-screen">
+                    <span>📊</span>
+                    <span>Профиль</span>
+                </button>
+                <button class="nav-btn" data-screen="story-screen">
+                    <span>📖</span>
+                    <span>Сюжет</span>
+                </button>
+            </nav>
+        </div>
+
+        <!-- Сюжет -->
+        <div id="story-screen" class="screen">
+            <div class="screen-header">
+                <h2>📖 Сюжет</h2>
+            </div>
+
+            <div class="story-content" id="story-content">
+                <!-- Сюжет загружается динамически -->
+            </div>
+
+            <nav class="bottom-nav">
+                <button class="nav-btn" data-screen="main-screen">
+                    <span>🐱</span>
+                    <span>Тап</span>
+                </button>
+                <button class="nav-btn" data-screen="shop-screen">
+                    <span>🛒</span>
+                    <span>Магазин</span>
+                </button>
+                <button class="nav-btn" data-screen="profile-screen">
+                    <span>📊</span>
+                    <span>Профиль</span>
+                </button>
+                <button class="nav-btn active" data-screen="story-screen">
+                    <span>📖</span>
+                    <span>Сюжет</span>
+                </button>
+            </nav>
+        </div>
+
+        <!-- Уведомления -->
+        <div id="notification" class="notification"></div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
